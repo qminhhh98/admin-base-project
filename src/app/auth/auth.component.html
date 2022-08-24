@@ -1,0 +1,73 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2 title">
+        <h1>Meggido</h1>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row title">
+        <div *ngIf="error" class="alert alert-danger">
+          <p>{{ error }}</p>
+        </div>
+      </div>
+      <div class="row title">
+        <div class="col-xs-12 col-sm-4">
+          <div *ngIf="isLoading" class="loading-icon">
+            <app-loading-spinner></app-loading-spinner>
+          </div>
+          <form *ngIf="!isLoading" [formGroup]="form">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                class="form-control"
+                id="email"
+                type="email"
+                formControlName="emailForm"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                class="form-control"
+                id="password"
+                type="password"
+                formControlName="passwordForm"
+              />
+            </div>
+            <div>
+              <button
+                [disabled]="form.invalid"
+                type="submit"
+                class="btn btn-primary mr-2"
+                (click)="onSubmit()"
+              >
+                {{ isLogInMode ? "Log in" : "Sign up" }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="onSwitchMode()"
+              >
+                Switch to {{ isLogInMode ? "Sign Up" : "Log in" }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+    <!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+
