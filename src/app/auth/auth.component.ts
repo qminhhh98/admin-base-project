@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -14,7 +15,11 @@ export class AuthComponent implements OnInit {
   form!: FormGroup;
   error: string = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -55,6 +60,7 @@ export class AuthComponent implements OnInit {
         console.log(res);
         this.form.reset();
         this.isLoading = false;
+        this.router.navigate(['/dashboard']);
       },
       (err: any) => {
         const errorMessage = err.error.error.message;
@@ -68,10 +74,12 @@ export class AuthComponent implements OnInit {
             this.error = 'Password should be at least 6 characters';
             break;
           case 'EMAIL_NOT_FOUND':
-            this.error = 'There is no user record corresponding to this identifier. The user may have been deleted';
+            this.error =
+              'There is no user record corresponding to this identifier. The user may have been deleted';
             break;
           case 'INVALID_PASSWORD':
-            this.error = 'The password is invalid or the user does not have a password';
+            this.error =
+              'The password is invalid or the user does not have a password';
             break;
         }
       }
