@@ -7,8 +7,8 @@ import { MainContentComponent } from './main-content/main-content.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/dashboard',
     pathMatch: 'full',
-    redirectTo: '/login',
   },
   {
     path: 'login',

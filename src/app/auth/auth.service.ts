@@ -10,7 +10,11 @@ import { Router } from '@angular/router';
 export class AuthService {
   user = new BehaviorSubject<User | null>(null);
   private tokenExpirationTime: any;
-  constructor(private http: HttpClient, private router: Router) {}
+
+  constructor(private http: HttpClient, private router: Router) {
+    const abc = localStorage.getItem('userData');
+    this.user.next(abc ? JSON.parse(abc) : null);
+  }
 
   signup(body: any): Observable<any> {
     return this.http
@@ -76,7 +80,6 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
-    this.router.navigate(['login']);
     localStorage.removeItem('userData');
     if (this.tokenExpirationTime) {
       clearTimeout(this.tokenExpirationTime);
