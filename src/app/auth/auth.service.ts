@@ -66,7 +66,7 @@ export class AuthService {
       userData.email,
       userData.id,
       userData._token,
-      new Date(userData._tokenExpirationDate)
+      new Date(userData._tokenExpirationDate)   
     );
 
     if (loadedUser.token) {

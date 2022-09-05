@@ -26,7 +26,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
